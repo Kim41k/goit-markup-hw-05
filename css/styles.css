@@ -14,6 +14,8 @@
   --alt-font: 'Raleway', sans-serif;
 
   --works-card-gap: 30px;
+
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -56,6 +58,8 @@ img {
 .link {
   color: inherit;
   text-decoration: none;
+
+  transition: color 250ms var(--timing-function);
 }
 
 .link:hover,
@@ -173,7 +177,7 @@ img {
 .site-nav-contacts {
   margin-left: auto;
   display: flex;
-  color: inherit;
+  color: currentColor;
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.1;
@@ -190,6 +194,20 @@ img {
 .site-nav .link {
   display: block;
   padding: 32px 0;
+  position: relative;
+}
+
+.site-nav .link.current::after {
+  /* display: block; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  content: '';
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-cl);
 }
 
 .contacts-link {
@@ -210,10 +228,6 @@ img {
 /* Hero section */
 
 .hero-section {
-  /* height: 600px;
-  background-color: var(--hero-footer-bg-cl);
-  padding-top: 200px;
-  padding-bottom: 200px; */
   text-align: center;
 }
 
@@ -232,10 +246,15 @@ img {
 }
 
 .hero-button {
-  /* margin-top: 30px; */
   width: 200px;
   height: 50px;
   padding: 0;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  color: var(--dark-bg-text-cl);
 
   border: 1px solid transparent;
   border-radius: 4px;
@@ -244,13 +263,17 @@ img {
   color: var(--dark-bg-text-cl);
 }
 
-.hero-button-text {
+.hero-button:hover {
+  cursor: pointer;
+}
+
+/* .hero-button-text {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: var(--dark-bg-text-cl);
-}
+} */
 
 /* Advantages section */
 
@@ -290,6 +313,27 @@ img {
 
 .what-we-do-list .item:not(:last-child) {
   margin-right: 30px;
+}
+
+.what-we-do-image-wrap {
+  position: relative;
+}
+
+.what-we-do-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 27px 82px;
+  background: rgba(47, 48, 58, 0.8);
+}
+
+.what-we-do-image-overlay .what-we-do-image-text {
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--dark-bg-text-cl);
 }
 
 /* Our Team */
@@ -342,6 +386,13 @@ img {
 
 .social-icons-svg {
   fill: var(--social-icons-cl);
+
+  transition: fill 250ms var(--timing-function);
+}
+
+.social-icons-link:hover .social-icons-svg,
+.social-icons-link:focus .social-icons-svg {
+  fill: var(--dark-bg-text-cl);
 }
 
 .social-icons-link {
@@ -352,16 +403,13 @@ img {
   height: 44px;
   border-radius: 50%;
   background-color: var(--main-bg-cl);
+
+  transition: background-color 250ms var(--timing-function);
 }
 
 .social-icons-link:hover,
 .social-icons-link:focus {
   background-color: var(--accent-cl);
-}
-
-.social-icons-link:hover .social-icons-svg,
-.social-icons-link:focus .social-icons-svg {
-  fill: var(--dark-bg-text-cl);
 }
 
 .social-icons-item:not(:last-child) {
@@ -391,10 +439,15 @@ img {
   height: 92px;
   border: 1px solid var(--social-icons-cl);
   border-radius: 4px;
+
+  transition: border-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .clients-list-svg {
   fill: var(--social-icons-cl);
+
+  transition: fill 250ms var(--timing-function);
 }
 
 .clients-list-link:hover .clients-list-svg {
@@ -418,12 +471,6 @@ img {
 
 .filter .item:not(:last-child) {
   margin-right: 8px;
-}
-
-.works-filter:hover,
-.works-filter:focus {
-  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
-    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 .works {
@@ -458,12 +505,17 @@ img {
   border-radius: 4px;
   border: none;
   cursor: pointer;
+
+  transition: background-color 250ms var(--timing-function),
+    color 250ms var(--timing-function), box-shadow 250ms var(--timing-function);
 }
 
 .works-filter:hover,
 .works-filter:focus {
   background-color: var(--accent-cl);
   color: var(--dark-bg-text-cl);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 /* Works description */
@@ -473,6 +525,49 @@ img {
   line-height: 1.9;
 }
 
+.works-image-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.works-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+}
+
+.works-item-link:hover .works-image-overlay {
+  transform: translateY(0);
+}
+
+.works-image-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: 63px 24px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--dark-bg-text-cl);
+
+  /* opacity: 0; */
+}
+
+.works-item-link:hover .works-image-text {
+  opacity: 1;
+}
+
+.works-item-wrap {
+  transition: box-shadow 250ms var(--timing-function);
+}
+
+/* Не сделал переход т.к. здесь не происхоит видимого перехода */
 .works-item-link:hover,
 .works-item-link:focus {
   color: var(--main-text-cl);
@@ -567,9 +662,53 @@ img {
   height: 44px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
+
+  transition: background-color 250ms var(--timing-function);
 }
 
 .footer-social-icons-link:hover,
 .footer-social-icons-link:focus {
   background-color: var(--accent-cl);
+}
+
+/* Order service modal */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  transition: opacity 250ms var(--timing-function),
+    visibility 250ms var(--timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /*Allows to click through the backdrop*/
+
+  transition: opacity 250ms var(--timing-function),
+    visibility 250ms var(--timing-function);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+  background-color: var(--main-bg-cl);
+}
+
+.modal-close {
+  position: absolute;
+  top: 9px;
+  right: 8px;
+  cursor: pointer;
 }

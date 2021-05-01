@@ -69,7 +69,7 @@
           <h1 class="title page-title">
             Эффективные решения для вашего бизнеса
           </h1>
-          <button type="button" class="hero-button hero-button-text">
+          <button type="button" class="hero-button" data-modal-open>
             Заказать услугу
           </button>
         </div>
@@ -143,27 +143,42 @@
 
           <ul class="list what-we-do-list">
             <li class="item">
-              <img
-                src="./images/what-we-do/img1.jpg"
-                alt="Программист, работающий на планшете"
-                width="370"
-              />
+              <div class="what-we-do-image-wrap">
+                <img
+                  src="./images/what-we-do/img1.jpg"
+                  alt="Программист, работающий на планшете"
+                  width="370"
+                />
+                <div class="what-we-do-image-overlay">
+                  <p class="what-we-do-image-text">Десктопные приложения</p>
+                </div>
+              </div>
             </li>
 
             <li class="item">
-              <img
-                src="./images/what-we-do/img2.jpg"
-                alt="Лэптоп с примерами работ"
-                width="370"
-              />
+              <div class="what-we-do-image-wrap">
+                <img
+                  src="./images/what-we-do/img2.jpg"
+                  alt="Лэптоп с примерами работ"
+                  width="370"
+                />
+                <div class="what-we-do-image-overlay">
+                  <p class="what-we-do-image-text">Мобильные приложения</p>
+                </div>
+              </div>
             </li>
 
             <li class="item">
-              <img
-                src="./images/what-we-do/img3.jpg"
-                alt="Планшет с цветовой палитрой"
-                width="370"
-              />
+              <div class="what-we-do-image-wrap">
+                <img
+                  src="./images/what-we-do/img3.jpg"
+                  alt="Планшет с цветовой палитрой"
+                  width="370"
+                />
+                <div class="what-we-do-image-overlay">
+                  <p class="what-we-do-image-text">Дизайнерские решения</p>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -608,5 +623,15 @@
         </div>
       </div>
     </footer>
+
+    <!-- Order service modal -->
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <svg class="modal-close" width="30" height="30" data-modal-close>
+          <use href="./images/icons/sprite.svg#icon-close"></use>
+        </svg>
+      </div>
+    </div>
+    <script src="./js/modal.js"></script>
   </body>
 </html>
