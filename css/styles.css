@@ -208,6 +208,7 @@ img {
   height: 4px;
   border-radius: 2px;
   background-color: var(--accent-cl);
+  transform: translateY(1px);
 }
 
 .contacts-link {
